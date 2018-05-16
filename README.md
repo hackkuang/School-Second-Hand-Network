@@ -1,6 +1,6 @@
 # School-Second-Hand-Network
 
-    校园二手交易网
+    校园二手交易网（无前端）
 
         主要实现功能有如下：
     
