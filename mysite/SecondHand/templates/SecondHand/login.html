@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecondHand_login</title>
+</head>
+<style>
+    a{
+        text-decoration: none;
+    }
+</style>
+<body>
+{% if errors %}
+    <li>
+        {% for error in errors %}
+            <p style="color:red;">
+                Please correct the error:{{error}} below.
+            </p>
+        {% endfor %}
+    </li>
+{% endif %}
+    <a href="{% url 'index' %}">返回首页</a>
+<form class="login" method="post" action="{% url 'login' %}">
+    <h2>Please sign in</h2>
+    username:<input type="text" name="username"><br/><br>
+    password:<input type="password" name="password"><br/><br/>
+    <input type="submit" name="submit" value="登陆"/>
+    &nbsp;&nbsp;&nbsp;<a href="{% url 'register' %}">Register Here</a>
+</form>
+</body>
+</html>

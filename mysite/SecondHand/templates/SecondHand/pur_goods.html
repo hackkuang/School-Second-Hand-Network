@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecondHand</title>
+</head>
+<style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .head_topic{
+            height:40px;
+            background-color:#DCDCDC;
+        }
+        h1{
+            text-align: center;
+            line-height: 40px;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        a:hover{
+            color: red;
+        }
+        .nav{
+            padding-top: 20px;
+            margin: 0 auto;
+            width:800px;
+            height:50px;
+            line-height: 50px;
+        }
+        .nav_list{
+            float: right;
+        }
+        .nav .nav_list span{
+            padding-right: 15px;
+        }
+</style>
+<body>
+    <div class="head_topic">
+            <h1>{{username}}!Welcome to STU FleaMarket BackStage!</h1>
+    </div>
+    <div class="nav">
+        <div class="nav_list">
+        <span><a href="{% url 'logout' %}">注销</a></span>
+        <span><a href="{% url 'index' %}">返回首页</a></span>
+        </div>
+    </div>
+    <div class="goods_information">
+        <ul>
+            <li>商品名称:{{goods.name}}</li>
+            <li>商品描述：{{goods.description}}</li>
+            <li>交易地点：{{goods.trade_location}}</li>
+            <li>商品价格：{{goods.price}}</li>
+            <li>商品图片：<img src="{{ goods.picture.url}}" style="width: 300px;height: 300px;"></li>
+            <li>出售者：{{goods.seller}}</li>
+            <li>出售者电话：{{goods.seller_phone}}</li>
+            <li>出售者QQ：{{goods.seller_qq}}</li>
+        </ul>
+    </div>
+    <form class="pur_goods" method="post" action="{% url 'pur_goods' goods.id %}">
+            <input type="submit" name="submit" value="立即购买"/>
+    </form>
+</body>
+</html>

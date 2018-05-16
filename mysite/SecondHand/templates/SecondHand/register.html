@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecondHand</title>
+</head>
+<style>
+    a{
+        text-decoration: none;
+    }
+</style>
+<body>
+ {% if errors %}
+        <li>
+
+            {% for error in errors %}
+             <p style="color: red;">
+                Please correct the error: {{error}} below.
+             </p>
+              {% endfor %}
+        </li>
+ {% endif %}
+<h1>Welcome to register</h1>
+<div class="register-box-out">
+    <div class="register-box-middle">
+        <div class="register-box-li">
+            {% if registered and username %}
+            <strong>{{username}}!!!Thank you for registered!</strong>
+            <a href="{% url 'index' %}">Return to the homepage</a>
+            <br/>
+            {% else %}
+            <form id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
+                <p>用户名：{{userform.username}}</p>
+                <p>密码：{{userform.password_first}}</p>
+                <p>确认密码：{{userform.password_second}}</p>
+                <p>邮箱：{{userform.email}}</p>
+                <input type="submit" name="submit" value="注册" />
+                <a href="{% url 'index' %}">返回首页</a>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

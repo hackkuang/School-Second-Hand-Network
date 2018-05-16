@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecondHand</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .head_topic{
+            height:40px;
+            background-color:#DCDCDC;
+        }
+        h1{
+            text-align: center;
+            line-height: 40px;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        a:hover{
+            color: red;
+        }
+        .nav{
+            padding-top: 20px;
+            margin: 0 auto;
+            width:800px;
+            height:50px;
+            line-height: 50px;
+        }
+        .nav_list{
+            float: right;
+        }
+        .nav .nav_list span{
+            padding-right: 15px;
+        }
+        .add_goodsform{
+            margin: 0 auto;
+            margin-top: 50px;
+            width:600px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="head_topic">
+            <h1>{{username}}!Welcome to STU FleaMarket Add_Goods Page!</h1>
+    </div>
+    <div class="nav">
+        <div class="nav_list">
+        <span><a href="{% url 'logout' %}">注销</a></span>
+        <span><a href="{% url 'index' %}">返回首页</a></span>
+        <span><a href="{% url 'backstage' %}">返回后台</a></span>
+        </div>
+    </div>
+    <div class="add_goodsform">
+        <form id="goods_form" method="post" action="{% url 'add_goods' %}" enctype="multipart/form-data">
+            <p>商品名称:{{goodsform.name}}</p><br />
+            <p>商品描述：{{goodsform.description}}</p><br />
+            <p>交易地点：{{goodsform.trade_location}}</p><br />
+            <p>商品价格：{{goodsform.price}}</p><br />
+            <p>商品种类：{{goodsform.category}}</p><br />
+            <p>商品图片：{{goodsform.picture}}</p><br />
+            <p>联系电话：{{goodsform.seller_phone}}</p><br />
+            <p>联系QQ：{{goodsform.seller_qq}}</p><br />
+            <input type="submit" name="submit" value="发布" />
+        </form>
+    </div>
+</body>
+</html>

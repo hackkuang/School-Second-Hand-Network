@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SecondHand</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            float: left;
+        }
+        a{
+            text-decoration: none;
+            color: black;
+        }
+        h2{
+            text-align: center;
+        }
+        a:hover{
+            color:red;
+        }
+        .head_topic{
+            height:40px;
+            background-color:#DCDCDC;
+        }
+        h1{
+            text-align: center;
+            line-height: 40px;
+        }
+        .user{
+            padding-top: 20px;
+            margin: 0 auto;
+            width:650px;
+            height:50px;
+            line-height: 50px;
+        }
+        .user .user_nav{
+            float: right;
+        }
+        .user span{
+            padding-right: 15px;
+        }
+        .head_nav{
+            margin-top: 100px;
+            text-align: center;
+        }
+        .head_nav span{
+            padding-right:25px ;
+            padding-left:25px ;
+        }
+        .head_nav span a{
+            font-size: 25px;
+        }
+        .goods_list{
+            padding-top: 150px;
+            width:1190px;
+            margin: 0 auto;
+            height:500px;
+        }
+        .goods_list_center{
+            padding-left: 85px;
+        }
+        li{
+            float: left;
+            display: block;
+        }
+        .img{
+            height:300px;
+            width: 300px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .info{
+            padding-left: 150px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="head_topic">
+    {% if username %}
+    <h1>{{username}}!Welcome to Market!</h1>
+     <div class="user">
+        <div class="user_nav">
+        <span><a href="{% url 'login' %}">登陆</a></span>
+        <span><a href="{% url 'register' %}">注册</a></span>
+        <span><a href="{% url 'logout' %}">注销</a></span>
+        <span><a href="{% url 'backstage' %}">我的发布</a></span>
+        </div>
+    </div>
+    {% else %}
+    <h1>Welcome to STU FleaMarket!</h1>
+    <div class="user">
+        <div class="user_nav">
+        <span><a href="{% url 'login' %}">登陆</a></span>
+        <span><a href="{% url 'register' %}">注册</a></span>
+        <span><a href="{% url 'logout' %}">注销</a></span>
+        </div>
+    </div>
+    {% endif %}
+    </div>
+    <div class="head_nav">
+    {% for category in categorys %}
+        <span><a href="#">{{category}}</a></span>
+    {% endfor %}
+    </div>
+    <div class="goods_list">
+        <div class="goods_list_center">
+        {% if goodses %}
+            <ul class="items">
+            {% for goods in goodses %}
+                <li class="item">
+                <div class="img"><a href="{% url 'pur_goods' goods.id %}"><img src="{{ goods.picture.url}}" style="width: 300px;height: 300px;"></a></div>
+                <div class="info">
+                    <div class="name">{{goods.name}}</div>
+                    <div class="price">￥{{goods.price}}</div>
+                </div>
+            {% endfor %}
+                </li>
+            </ul>
+        {% else %}
+            <h2>No pages currently in category.</h2>
+        {% endif %}
+        </div>
+    </div>
+</body>
+</html>
